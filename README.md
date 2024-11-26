@@ -1,26 +1,68 @@
-# Lumen PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/lumen)](https://packagist.org/packages/laravel/lumen-framework)
+# Lumen Guests API
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+This project provides an API built with **Lumen** to manage guest. It allows you to perform CRUD operations on guests.
 
-> **Note:** In the years since releasing Lumen, PHP has made a variety of wonderful performance improvements. For this reason, along with the availability of [Laravel Octane](https://laravel.com/docs/octane), we no longer recommend that you begin new projects with Lumen. Instead, we recommend always beginning new projects with [Laravel](https://laravel.com).
+App start:
+```
+git clone https://github.com/your-repo/lumen-guests-api.git
+cd lumen-guests-api
+docker-compose up -d
+docker ps
+docker exec -it lumen-guest-service-service-1 php artisan migrate
+```
+lumen-guest-service-service-1 - name of container
 
-## Official Documentation
+## Endpoints
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+### Guests
 
-## Contributing
+#### 1. Get all guests
+```http
+GET /api/guests
+```
+- Returns a list of all guests.
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### 2. Get guest by ID
+```http
+GET /api/guests/{id}
+```
+- Returns a single guest by its ID.
 
-## Security Vulnerabilities
+#### 3. Create a new guest
+```http
+POST /api/guests
+```
+- Request Body:
+```json
+{
+    "name": "admin",
+    "surname": "admin",
+    "email": "admin@admin.com",
+    "phone": "+79999999999",
+    "country": "ru"
+}
+```
+- Creates a new guest with the provided data.
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+#### 4. Update a guest by ID
+```http
+PUT /api/guests/{id}
+```
+- Request Body:
+```json
+{
+    "name": "admin2",
+    "surname": "admin2",
+    "email": "admin2@admin.com",
+    "phone": "+19999999999",
+    "country": "us"
+}
+```
+- Updates the guest with the provided ID.
 
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### 5. Delete a guest by ID
+```http
+DELETE /api/guests/{id}
+```
+- Deletes the guest with the specified ID.
