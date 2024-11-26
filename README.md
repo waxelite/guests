@@ -5,8 +5,8 @@ This project provides an API built with **Lumen** to manage guest. It allows you
 
 App start:
 ```
-git clone https://github.com/your-repo/lumen-guests-api.git
-cd lumen-guests-api
+git clone https://github.com/waxelite/guests.git
+cd guests
 docker-compose up -d
 docker ps
 docker exec -it lumen-guest-service-service-1 php artisan migrate
