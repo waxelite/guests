@@ -16,7 +16,7 @@
 /**
  * Гости (Guests)
  */
-$router->group(['prefix' => 'api/guests'], function () use ($router) {
+$router->group(['prefix' => 'api/guests', 'middleware' => ['debug']], function () use ($router) {
     $router->get('/', 'GuestController@index');
     $router->get('{id}', 'GuestController@show');
     $router->post('/', 'GuestController@store');
