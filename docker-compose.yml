@@ -1,0 +1,29 @@
+services:
+  service:
+    build:
+      context: .
+    ports:
+      - "8001:8001"
+    environment:
+      - APP_ENV=local
+    networks:
+      - backend
+    depends_on:
+      - service-db
+
+  service-db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: service_db
+    volumes:
+      - service-db-data:/var/lib/mysql
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  service-db-data:
